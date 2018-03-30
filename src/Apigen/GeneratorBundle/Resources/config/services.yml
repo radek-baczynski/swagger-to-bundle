@@ -1,0 +1,7 @@
+services:
+    apigen.generator.argument:
+        class: Apigen\GeneratorBundle\Service\Generator\ArgumentGenerator
+        arguments: ['@apigen.generator.dto']
+
+    apigen.generator.dto:
+        class: Apigen\GeneratorBundle\Service\Generator\DtoGenerator

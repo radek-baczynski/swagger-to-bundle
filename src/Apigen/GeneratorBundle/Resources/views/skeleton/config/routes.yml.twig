@@ -1,0 +1,9 @@
+{% for pathString, path in swagger.paths %}
+{% for httpMethod, operation in path.operations %}
+{{ route_name(pathString, httpMethod) }}:
+    path: {{ pathString }}
+    methods: [{{ httpMethod|upper }}]
+    defaults:
+        _controller: {{ route_controller(pathString, httpMethod) }}
+{% endfor %}
+{% endfor %}

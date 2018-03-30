@@ -1,0 +1,100 @@
+api_post_pet:
+    path: /pet
+    methods: [POST]
+    defaults:
+        _controller: ApiBundle:Pet\Pet:postAddPet
+api_put_pet:
+    path: /pet
+    methods: [PUT]
+    defaults:
+        _controller: ApiBundle:Pet\Pet:putUpdatePet
+api_get_pet_find_by_status:
+    path: /pet/findByStatus
+    methods: [GET]
+    defaults:
+        _controller: ApiBundle:Pet\PetFindByStatus:getFindPetsByStatus
+api_get_pet_find_by_tags:
+    path: /pet/findByTags
+    methods: [GET]
+    defaults:
+        _controller: ApiBundle:Pet\PetFindByTags:getFindPetsByTags
+api_get_pet:
+    path: /pet/{petId}
+    methods: [GET]
+    defaults:
+        _controller: ApiBundle:Pet\Pet:getGetPetById
+api_post_pet:
+    path: /pet/{petId}
+    methods: [POST]
+    defaults:
+        _controller: ApiBundle:Pet\Pet:postUpdatePetWithForm
+api_delete_pet:
+    path: /pet/{petId}
+    methods: [DELETE]
+    defaults:
+        _controller: ApiBundle:Pet\Pet:deleteDeletePet
+api_post_pet_upload_image:
+    path: /pet/{petId}/uploadImage
+    methods: [POST]
+    defaults:
+        _controller: ApiBundle:Pet\PetUploadImage:postUploadFile
+api_get_store_inventory:
+    path: /store/inventory
+    methods: [GET]
+    defaults:
+        _controller: ApiBundle:Store\StoreInventory:getGetInventory
+api_post_store_order:
+    path: /store/order
+    methods: [POST]
+    defaults:
+        _controller: ApiBundle:Store\StoreOrder:postPlaceOrder
+api_get_store_order:
+    path: /store/order/{orderId}
+    methods: [GET]
+    defaults:
+        _controller: ApiBundle:Store\StoreOrder:getGetOrderById
+api_delete_store_order:
+    path: /store/order/{orderId}
+    methods: [DELETE]
+    defaults:
+        _controller: ApiBundle:Store\StoreOrder:deleteDeleteOrder
+api_post_user:
+    path: /user
+    methods: [POST]
+    defaults:
+        _controller: ApiBundle:User\User:postCreateUser
+api_post_user_create_with_array:
+    path: /user/createWithArray
+    methods: [POST]
+    defaults:
+        _controller: ApiBundle:User\UserCreateWithArray:postCreateUsersWithArrayInput
+api_post_user_create_with_list:
+    path: /user/createWithList
+    methods: [POST]
+    defaults:
+        _controller: ApiBundle:User\UserCreateWithList:postCreateUsersWithListInput
+api_get_user_login:
+    path: /user/login
+    methods: [GET]
+    defaults:
+        _controller: ApiBundle:User\UserLogin:getLoginUser
+api_get_user_logout:
+    path: /user/logout
+    methods: [GET]
+    defaults:
+        _controller: ApiBundle:User\UserLogout:getLogoutUser
+api_get_user:
+    path: /user/{username}
+    methods: [GET]
+    defaults:
+        _controller: ApiBundle:User\User:getGetUserByName
+api_put_user:
+    path: /user/{username}
+    methods: [PUT]
+    defaults:
+        _controller: ApiBundle:User\User:putUpdateUser
+api_delete_user:
+    path: /user/{username}
+    methods: [DELETE]
+    defaults:
+        _controller: ApiBundle:User\User:deleteDeleteUser

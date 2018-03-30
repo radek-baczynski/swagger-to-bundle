@@ -1,0 +1,11 @@
+services:
+    api_support.param_converter:
+        class: Apigen\ApiSupportBundle\Http\ApiParamConverter
+        arguments: ['@jms_serializer', '@validator', '@security.token_storage']
+        tags:
+            - { name: request.param_converter, priority: -2, converter: api_param_converter }
+
+    api_support.json_content_listener:
+        class: Apigen\ApiSupportBundle\Event\JsonContentListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.request}

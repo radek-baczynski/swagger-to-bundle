@@ -1,0 +1,11 @@
+<?php
+
+namespace {{ namespace }};
+
+interface {{ className }}
+{
+{% for method in methods %}
+    public function {{ method.operation.operationId }}({{ handler_arguments(method.operation, true) }});
+
+{% endfor %}
+}

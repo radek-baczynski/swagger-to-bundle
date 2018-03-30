@@ -1,0 +1,30 @@
+<?php
+
+namespace {{ namespace }};
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
+class {{ className }} extends Controller
+{
+{% for action in actions %}
+    /**
+	 * @param \Common\DTO\Pet $body
+	 *
+	 * @ParamConverter("body", converter="api_param_converter")
+	 */
+    public function {{ action_name(action.pathString, action.method) }}({{ action_arguments(action.operation) }})
+    {
+        try
+        {
+            $handler = $this->get('api.handler_locator')->getHandler('{{ resource_name(action.pathString, action.method) }}');
+            $handler->{{ action.operation.operationId }}({{ handler_arguments(action.operation) }});
+        }
+        catch(\Exception $e)
+        {
+
+        }
+    }
+
+{% endfor %}
+}

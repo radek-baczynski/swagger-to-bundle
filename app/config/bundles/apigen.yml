@@ -1,0 +1,23 @@
+apigen_generator:
+    apis:
+        pet_store:
+            resources:
+                tags: [pet, store, user]
+            file: 'https://app.swaggerhub.com/apiproxy/schema/file/Shoplo/petstore/1.0.0/swagger.json'
+            routing:
+                name_pattern: 'api_{{ method }}_{{ path|pathToWords|classify|underscore }}'
+            bundle:
+                name: 'ApiBundle'
+                namespace: 'PetStore\{{ depends("[bundle][name]") }}'
+                dir:  '%kernel.root_dir%/../tests/petapp/src/ApiBundle'
+            controller:
+                namespace: '{{ depends("[bundle][namespace]") }}\Controller\{{resource_name(path, method)}}'
+                class: '{{path|pathToWords|classify}}Controller'
+            dto:
+                namespace: 'Common\DTO'
+            store:
+                PetStore\ApiBundle: '%kernel.root_dir%/../tests/petapp/src/ApiBundle'
+                Common\DTO: '%kernel.root_dir%/../tests/petapp/src/Common/DTO'
+            handler:
+                namespace: '{{ depends("[bundle][namespace]") }}\Handler'
+

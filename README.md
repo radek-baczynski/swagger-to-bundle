@@ -11,5 +11,7 @@ Generate automatically:
 * Routing
 * ParamConverters
 * Commands & Queries (optional for CQRS projects)
-*
+* GuzzleClient
+* ES6 client
+* TypeScript client
 

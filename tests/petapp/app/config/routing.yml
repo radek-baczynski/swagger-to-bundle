@@ -1,0 +1,14 @@
+api_support:
+    resource: "@ApiSupportBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+api:
+    resource: '@ApiBundle/Resources/config/routes.yml'
+
+post:
+    resource: '@AppBundle/Resources/config/routing/post.yml'
+    prefix: /post

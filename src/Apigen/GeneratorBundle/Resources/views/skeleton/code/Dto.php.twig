@@ -1,0 +1,48 @@
+<?php
+
+namespace {{ dto.namespace }};
+
+use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
+
+{% if dto.childTypes %}
+/**
+ * @Serializer\Discriminator(
+ *  field="petType",
+ *   map = {
+ *      {% for childType in dto.childTypes %}"{{ childType.type }}": "{{ childType.toJmsSerializer }}"{% if not loop.last %},{% endif %}{% endfor %}
+
+ *   }
+ * )
+ */
+{% endif %}
+class {{ dto.className }}{% if dto.type.parentClass %} extends {{ dto.type.parentClass.type.toPhp }}
+{% endif %}
+{
+{% if dto.schema.type == 'array' %}
+{% set type = property_type(dto.schema.items) %}
+    /**
+     * @var {{type.toPhpDoc|raw}}
+     *
+     * @Serializer\Type("{{ type.toJmsSerializer|raw }}")
+     *
+     */
+    protected $data;
+{% else %}
+{% for name, property in dto.properties %}
+{%  set type= property_type(property) %}
+    /**
+     * @var {{type.toPhpDoc|raw}}
+     *
+     * @Serializer\Type("{{ type.toJmsSerializer|raw }}")
+{% if name == dto.schema.discriminator %}
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices={ {%  for childType in dto.childTypes %}"{{ childType.type }}"{% if not loop.last %},{% endif %}{% endfor %} })
+{% endif %}
+     *
+     */
+    protected ${{ name }};
+
+{% endfor %}
+{% endif %}
+}
